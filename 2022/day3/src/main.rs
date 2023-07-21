@@ -5,7 +5,7 @@ fn main() {
 
     let input = fs::read_to_string("input.txt").expect("Cannot read input.txt");
 
-    println!("{}", get_total_priority(input));
+    println!("{}", get_total_priority_v2(input));
 }
 
 fn get_total_priority(input: String) -> u32 {
@@ -67,4 +67,58 @@ fn get_item_priority(item: &char) -> u32 {
     result += priority;
 
     result
+}
+
+fn get_common_item_v2(first: &str, second: &str, third: &str) -> Option<char> {
+    for potential_item in first.chars() {
+        for a in second.chars() {
+            for b in third.chars() {
+                if potential_item == a && potential_item == b {
+                    return Some(potential_item);
+                }
+            }
+        }
+    }
+    None
+}
+
+fn get_total_priority_v2(input: String) -> u32 {
+    let mut total_priority = 0;
+    let mut all_lines = input.split("\n").into_iter();
+
+    loop {
+        let line = all_lines.next();
+
+        let first: &str;
+
+        match line {
+            None => break,
+            Some(rucksack) => {
+                first = rucksack;
+            }
+        }
+
+        if first.is_empty() {
+            continue;
+        }
+
+        let second = all_lines
+            .next()
+            .expect("Invalid input: missing two rucksacks at the end");
+
+        let third = all_lines
+            .next()
+            .expect("Invalid input: missing one rucksack at the end");
+
+        let common_item = get_common_item_v2(first, second, third)
+            .expect("Invalid rucksacks: no common element found");
+
+        let item_priority = get_item_priority(&common_item);
+
+        total_priority += item_priority;
+
+        println!("{} = {}", common_item, item_priority);
+    }
+
+    total_priority
 }
