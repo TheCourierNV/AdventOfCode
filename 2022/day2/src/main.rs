@@ -25,15 +25,9 @@ fn main() {
 fn get_final_score(input: String) -> u32 {
     let mut current_score = 0;
 
-    let input = input.split("\n");
-
-    for line in input {
-        if line.is_empty() {
-            continue;
-        }
-
-        let enemy_move = get_enemy_move(line.chars().nth(0).expect("Enemy move not found"));
-        let my_move = get_my_move(line.chars().nth(2).expect("Counter move not found"));
+    for line in input.lines() {
+        let enemy_move = get_enemy_move(&line.chars().nth(0).expect("Enemy move not found"));
+        let my_move = get_my_move(&line.chars().nth(2).expect("Counter move not found"));
 
         let outcome = if my_move == enemy_move {
             Outcomes::Draw
@@ -58,15 +52,9 @@ fn get_final_score(input: String) -> u32 {
 fn get_final_score_v2(input: String) -> u32 {
     let mut current_score = 0;
 
-    let input = input.split("\n");
-
-    for line in input {
-        if line.is_empty() {
-            continue;
-        }
-
-        let enemy_move = get_enemy_move(line.chars().nth(0).expect("Enemy move not found"));
-        let outcome = get_outcome(line.chars().nth(2).expect("Outcome not found"));
+    for line in input.lines() {
+        let enemy_move = get_enemy_move(&line.chars().nth(0).expect("Enemy move not found"));
+        let outcome = get_outcome(&line.chars().nth(2).expect("Outcome not found"));
 
         let my_move = get_move_from_outcome(&enemy_move, &outcome);
 

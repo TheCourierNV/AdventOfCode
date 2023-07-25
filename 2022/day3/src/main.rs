@@ -11,11 +11,7 @@ fn main() {
 fn get_total_priority(input: String) -> u32 {
     let mut total_priority = 0;
 
-    for line in input.split("\n") {
-        if line.is_empty() {
-            continue;
-        }
-
+    for line in input.lines() {
         let common_item = get_common_item(line).expect("Invalid rucksack");
 
         total_priority += get_item_priority(&common_item);
@@ -84,7 +80,7 @@ fn get_common_item_v2(first: &str, second: &str, third: &str) -> Option<char> {
 
 fn get_total_priority_v2(input: String) -> u32 {
     let mut total_priority = 0;
-    let mut all_lines = input.split("\n").into_iter();
+    let mut all_lines = input.lines();
 
     loop {
         let line = all_lines.next();

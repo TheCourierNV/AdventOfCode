@@ -11,11 +11,7 @@ fn main() {
 fn get_overlapping_shifts_count(input: String) -> u32 {
     let mut overlapping_shifts = 0;
 
-    for line in input.split("\n") {
-        if line.is_empty() {
-            continue;
-        }
-
+    for line in input.lines() {
         let shifts: Vec<&str> = line.split(",").collect();
 
         if is_overlapping(get_shift(shifts[0]), get_shift(shifts[1])) {
