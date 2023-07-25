@@ -50,17 +50,12 @@ fn get_item_priority(item: &char) -> u32 {
 
     let alphabet = 'a'..'z';
 
-    let mut priority = 1;
-
-    for letter in alphabet {
+    for (priority, letter) in alphabet.enumerate() {
         if letter == lowercase_item {
+            result += priority as u32;
             break;
         }
-
-        priority += 1;
     }
-
-    result += priority;
 
     result
 }
