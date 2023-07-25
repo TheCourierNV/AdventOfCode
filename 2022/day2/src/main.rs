@@ -19,10 +19,10 @@ fn main() {
 
     let input = fs::read_to_string("input.txt").expect("Cannot read input.txt");
 
-    println!("Final score: {}", get_final_score_v2(input));
+    println!("Final score: {}", get_final_score_v2(&input));
 }
 
-fn get_final_score(input: String) -> u32 {
+fn get_final_score(input: &String) -> u32 {
     let mut current_score = 0;
 
     for line in input.lines() {
@@ -49,7 +49,7 @@ fn get_final_score(input: String) -> u32 {
     current_score
 }
 
-fn get_final_score_v2(input: String) -> u32 {
+fn get_final_score_v2(input: &String) -> u32 {
     let mut current_score = 0;
 
     for line in input.lines() {
@@ -67,7 +67,7 @@ fn get_final_score_v2(input: String) -> u32 {
     current_score
 }
 
-fn get_my_move(input: char) -> Moves {
+fn get_my_move(input: &char) -> Moves {
     match input {
         'X' => Moves::Rock,
         'Y' => Moves::Paper,
@@ -76,7 +76,7 @@ fn get_my_move(input: char) -> Moves {
     }
 }
 
-fn get_enemy_move(input: char) -> Moves {
+fn get_enemy_move(input: &char) -> Moves {
     match input {
         'A' => Moves::Rock,
         'B' => Moves::Paper,
@@ -85,7 +85,7 @@ fn get_enemy_move(input: char) -> Moves {
     }
 }
 
-fn get_outcome(input: char) -> Outcomes {
+fn get_outcome(input: &char) -> Outcomes {
     match input {
         'X' => Outcomes::Defeat,
         'Y' => Outcomes::Draw,
