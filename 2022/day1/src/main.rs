@@ -41,7 +41,7 @@ fn get_all_elves(input: String) -> Vec<u32> {
             continue;
         }
 
-        current_elf += get_calories(line);
+        current_elf += line.parse::<u32>().expect("Failed to parse calories");
     }
 
     result
@@ -62,12 +62,8 @@ fn get_max_elf(input: String) -> u32 {
             continue;
         }
 
-        current_elf += get_calories(line);
+        current_elf += line.parse::<u32>().expect("Failed to parse calories");
     }
 
     max_elf
-}
-
-fn get_calories(input: &str) -> u32 {
-    input.parse().expect("Failed to parse calories")
 }
