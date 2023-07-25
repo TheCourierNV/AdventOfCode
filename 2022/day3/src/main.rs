@@ -8,7 +8,7 @@ fn main() {
     println!("{}", get_total_priority_v2(input));
 }
 
-fn get_total_priority(input: String) -> u32 {
+fn get_total_priority(input: &String) -> u32 {
     let mut total_priority = 0;
 
     for line in input.lines() {

@@ -5,16 +5,16 @@ fn main() {
 
     let input = fs::read_to_string("input.txt").expect("Cannot read input.txt");
 
-    println!("{}", get_overlapping_shifts_count(input));
+    println!("{}", get_overlapping_shifts_count(&input));
 }
 
-fn get_overlapping_shifts_count(input: String) -> u32 {
+fn get_overlapping_shifts_count(input: &String) -> u32 {
     let mut overlapping_shifts = 0;
 
     for line in input.lines() {
         let shifts: Vec<&str> = line.split(",").collect();
 
-        if is_overlapping(get_shift(shifts[0]), get_shift(shifts[1])) {
+        if is_overlapping(&get_shift(shifts[0]), &get_shift(shifts[1])) {
             overlapping_shifts += 1;
         }
     }
@@ -22,7 +22,7 @@ fn get_overlapping_shifts_count(input: String) -> u32 {
     overlapping_shifts
 }
 
-fn is_overlapping(first_shift: (u32, u32), second_shift: (u32, u32)) -> bool {
+fn is_overlapping(first_shift: &(u32, u32), second_shift: &(u32, u32)) -> bool {
     let (first_shift_start, first_shift_end) = first_shift;
     let (second_shift_start, second_shift_end) = second_shift;
 
@@ -33,7 +33,7 @@ fn is_overlapping(first_shift: (u32, u32), second_shift: (u32, u32)) -> bool {
     !(first_is_before_second || fist_is_after_second)
 }
 
-fn is_fully_overlapping(first_shift: (u32, u32), second_shift: (u32, u32)) -> bool {
+fn is_fully_overlapping(first_shift: &(u32, u32), second_shift: &(u32, u32)) -> bool {
     let (first_shift_start, first_shift_end) = first_shift;
     let (second_shift_start, second_shift_end) = second_shift;
 

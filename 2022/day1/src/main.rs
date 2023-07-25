@@ -5,7 +5,7 @@ fn main() {
 
     let input = fs::read_to_string("input.txt").expect("Cannot read input.txt");
 
-    let answer = get_top_n_elves(input, 3);
+    let answer = get_top_n_elves(&input, 3);
     println!("Max calories: {} {} {}", answer[0], answer[1], answer[2]);
     println!("Answer: {}", answer[0] + answer[1] + answer[2]);
 
@@ -13,7 +13,7 @@ fn main() {
     // println!("Max calories: {}", answer);
 }
 
-fn get_top_n_elves(input: String, n: usize) -> Vec<u32> {
+fn get_top_n_elves(input: &String, n: usize) -> Vec<u32> {
     let mut elves = get_all_elves(input);
 
     let mut result: Vec<u32> = Vec::new();
@@ -27,7 +27,7 @@ fn get_top_n_elves(input: String, n: usize) -> Vec<u32> {
     result
 }
 
-fn get_all_elves(input: String) -> Vec<u32> {
+fn get_all_elves(input: &String) -> Vec<u32> {
     let mut result: Vec<u32> = Vec::new();
 
     let mut current_elf = 0;
@@ -47,7 +47,7 @@ fn get_all_elves(input: String) -> Vec<u32> {
     result
 }
 
-fn get_max_elf(input: String) -> u32 {
+fn get_max_elf(input: &String) -> u32 {
     let mut max_elf = 0;
 
     let mut current_elf = 0;
