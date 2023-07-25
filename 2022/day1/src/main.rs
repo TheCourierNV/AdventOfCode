@@ -29,11 +29,10 @@ fn get_top_n_elves(input: String, n: usize) -> Vec<u32> {
 
 fn get_all_elves(input: String) -> Vec<u32> {
     let mut result: Vec<u32> = Vec::new();
-    let input = input.split("\n");
 
     let mut current_elf = 0;
 
-    for line in input {
+    for line in input.lines() {
         if line.is_empty() {
             result.push(current_elf);
 
@@ -51,10 +50,8 @@ fn get_all_elves(input: String) -> Vec<u32> {
 fn get_max_elf(input: String) -> u32 {
     let mut max_elf = 0;
 
-    let input = input.split("\n");
-
-    let mut current_elf: u32 = 0;
-    for line in input {
+    let mut current_elf = 0;
+    for line in input.lines() {
         if line.is_empty() {
             if max_elf < current_elf {
                 max_elf = current_elf
